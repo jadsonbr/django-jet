@@ -3,7 +3,7 @@ try:
 except ImportError: # Django 1.11
     from django.urls import reverse
 
-from django.conf.urls import re_path
+from django.urls import re_path
 from django.contrib import messages
 from django.shortcuts import redirect
 from httplib2 import ServerNotFoundError
