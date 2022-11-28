@@ -80,17 +80,11 @@ class GoogleAnalyticsClient:
     analytics_service = None
 
     def __init__(self, storage=None, redirect_uri=None):
-        # self.FLOW = flow_from_clientsecrets(
-        #     JET_MODULE_GOOGLE_ANALYTICS_CLIENT_SECRETS_FILE,
-        #     scope="https://www.googleapis.com/auth/analytics.readonly",
-        #     redirect_uri=redirect_uri,
-        #     prompt="consent",
-        # ) 
-        self.FLOW = google_auth_oauthlib.flow.Flow.from_client_secrets_file(
+        self.FLOW = flow_from_clientsecrets(
             JET_MODULE_GOOGLE_ANALYTICS_CLIENT_SECRETS_FILE,
-            scopes=['https://www.googleapis.com/auth/drive.metadata.readonly']
+            scope='https://www.googleapis.com/auth/analytics.readonly',
+            redirect_uri=redirect_uri,
         )
-        self.FLOW.redirect_uri = redirect_uri
         if storage is not None:
             credential = storage.get()
             credential.set_store(storage)
@@ -98,10 +92,7 @@ class GoogleAnalyticsClient:
 
     def get_oauth_authorize_url(self, state=""):
         self.FLOW.params["state"] = state
-        # authorize_url = self.FLOW.step1_get_authorize_url()
-        authorize_url, state = self.FLOW.authorization_url(
-            access_type='offline',
-            include_granted_scopes='true')
+        authorize_url = self.FLOW.step1_get_authorize_url()
         return authorize_url
 
     def set_credential(self, credential):
