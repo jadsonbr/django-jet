@@ -88,8 +88,7 @@ class GoogleAnalyticsClient:
         # ) 
         self.FLOW = google_auth_oauthlib.flow.Flow.from_client_secrets_file(
             JET_MODULE_GOOGLE_ANALYTICS_CLIENT_SECRETS_FILE,
-            scopes=['https://www.googleapis.com/auth/drive.metadata.readonly'],
-            prompt="consent"
+            scopes=['https://www.googleapis.com/auth/drive.metadata.readonly']
         )
         self.FLOW.redirect_uri = redirect_uri
         if storage is not None:
