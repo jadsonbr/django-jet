@@ -79,12 +79,17 @@ class GoogleAnalyticsClient:
     analytics_service = None
 
     def __init__(self, storage=None, redirect_uri=None):
+        # self.FLOW = flow_from_clientsecrets(
+        #     JET_MODULE_GOOGLE_ANALYTICS_CLIENT_SECRETS_FILE,
+        #     scope="https://www.googleapis.com/auth/analytics.readonly",
+        #     redirect_uri=redirect_uri,
+        #     prompt="consent",
+        # )
         self.FLOW = flow_from_clientsecrets(
             JET_MODULE_GOOGLE_ANALYTICS_CLIENT_SECRETS_FILE,
             scope="https://www.googleapis.com/auth/analytics.readonly",
-            redirect_uri=redirect_uri,
-            prompt="consent",
-        )
+            redirect_uri=redirect_uri
+        )        
 
         if storage is not None:
             credential = storage.get()
