@@ -10,7 +10,6 @@ from jet.dashboard.models import UserDashboardModule
 from django.utils.translation import gettext_lazy as _
 from jet.ordered_set import OrderedSet
 from jet.utils import get_admin_site_name, context_to_dict
-from jet.dashboard.dashboard_modules import google_analytics
 
 try:
     from django.template.context_processors import csrf
@@ -284,10 +283,6 @@ class DefaultIndexDashboard(Dashboard):
         #     column=2,
         #     order=1
         # ))
-        
-        # self.children.append(google_analytics.GoogleAnalyticsVisitorsTotals)
-        # self.children.append(google_analytics.GoogleAnalyticsVisitorsChart)
-        # self.children.append(google_analytics.GoogleAnalyticsPeriodVisitors)           
 
 
 class DefaultAppIndexDashboard(AppIndexDashboard):
