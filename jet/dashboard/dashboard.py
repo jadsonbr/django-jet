@@ -10,6 +10,7 @@ from jet.dashboard.models import UserDashboardModule
 from django.utils.translation import gettext_lazy as _
 from jet.ordered_set import OrderedSet
 from jet.utils import get_admin_site_name, context_to_dict
+from jet.dashboard.dashboard_modules import google_analytics
 
 try:
     from django.template.context_processors import csrf
@@ -252,37 +253,40 @@ class DefaultIndexDashboard(Dashboard):
         ))
 
         # append a feed module
-        self.children.append(modules.Feed(
-            _('Latest Django News'),
-            feed_url='http://www.djangoproject.com/rss/weblog/',
-            limit=5,
-            column=1,
-            order=1
-        ))
+        # self.children.append(modules.Feed(
+        #     _('Latest Django News'),
+        #     feed_url='http://www.djangoproject.com/rss/weblog/',
+        #     limit=5,
+        #     column=1,
+        #     order=1
+        # ))
 
         # append another link list module for "support".
-        self.children.append(modules.LinkList(
-            _('Support'),
-            children=[
-                {
-                    'title': _('Django documentation'),
-                    'url': 'http://docs.djangoproject.com/',
-                    'external': True,
-                },
-                {
-                    'title': _('Django "django-users" mailing list'),
-                    'url': 'http://groups.google.com/group/django-users',
-                    'external': True,
-                },
-                {
-                    'title': _('Django irc channel'),
-                    'url': 'irc://irc.freenode.net/django',
-                    'external': True,
-                },
-            ],
-            column=2,
-            order=1
-        ))
+        # self.children.append(modules.LinkList(
+        #     _('Support'),
+        #     children=[
+        #         {
+        #             'title': _('Django documentation'),
+        #             'url': 'http://docs.djangoproject.com/',
+        #             'external': True,
+        #         },
+        #         {
+        #             'title': _('Django "django-users" mailing list'),
+        #             'url': 'http://groups.google.com/group/django-users',
+        #             'external': True,
+        #         },
+        #         {
+        #             'title': _('Django irc channel'),
+        #             'url': 'irc://irc.freenode.net/django',
+        #             'external': True,
+        #         },
+        #     ],
+        #     column=2,
+        #     order=1
+        # ))
+        self.children.append(google_analytics.GoogleAnalyticsVisitorsTotals)
+        self.children.append(google_analytics.GoogleAnalyticsVisitorsChart)
+        self.children.append(google_analytics.GoogleAnalyticsPeriodVisitors)           
 
 
 class DefaultAppIndexDashboard(AppIndexDashboard):
