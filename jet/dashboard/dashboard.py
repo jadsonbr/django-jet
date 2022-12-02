@@ -284,9 +284,10 @@ class DefaultIndexDashboard(Dashboard):
         #     column=2,
         #     order=1
         # ))
-        self.children.append(google_analytics.GoogleAnalyticsVisitorsTotals)
-        self.children.append(google_analytics.GoogleAnalyticsVisitorsChart)
-        self.children.append(google_analytics.GoogleAnalyticsPeriodVisitors)           
+        
+        # self.children.append(google_analytics.GoogleAnalyticsVisitorsTotals)
+        # self.children.append(google_analytics.GoogleAnalyticsVisitorsChart)
+        # self.children.append(google_analytics.GoogleAnalyticsPeriodVisitors)           
 
 
 class DefaultAppIndexDashboard(AppIndexDashboard):
